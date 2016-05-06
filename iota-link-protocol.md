@@ -79,12 +79,12 @@ JSON:
 }
 ```
 
-### attachInterrupt(int interruptId, int pinId, int mode)
+### attachInterrupt(int intId, int pinId, int mode)
 Attaches GPIO interrupt service to the specified pin. There is a total of 8 interrupts which can be attached to any pin. Interrupts can be configured to trigger at HIGH or LOW state or at RISING, FALLING or both edges. When the interrupt is triggered, device sends message `interrupt(int interruptId, int event)`, where event has the same meaning as mode.
 
 Parameters:
 
-`int interruptId` - interrupt number (0-7)
+`int intId` - interrupt number (0-7)
 
 `int pinId` - pin number (0-33)
 
@@ -95,24 +95,24 @@ JSON:
 {
   "jsonrpc": "2.0",
   "method": "digitalRead",
-  "params": [<interruptId>, <pinId>, <mode>],
+  "params": [<intId>, <pinId>, <mode>],
   "id": <msgId>
 }
 ```
 
-### detachInterrupt(int interruptId)
+### detachInterrupt(int intId)
 Detaches (disables) specified GPIO interrupt.
 
 Parameters:
 
-`int interruptId` - interrupt number (0-7)
+`int intId` - interrupt number (0-7)
 
 JSON:
 ```
 {
   "jsonrpc": "2.0",
   "method": "detachInterrupt",
-  "params": [<interruptId>],
+  "params": [<intId>],
   "id": <msgId>
 }
 ```
