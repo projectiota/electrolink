@@ -224,29 +224,65 @@ JSON:
 
 
 ## SPI
-### spi0_begin(int divider, int mode) [20] and spi1_begin(int divider, int mode) [30]
+### spiStart(int spiNb, int divider, int mode)
 
 Starts and configures SPI module. This function configure device to master mode. Slave mode is not supported.
 
 Parameters:
 
+`int spiNb` - SPI module selection
+
 `int divider` - SCK signal frequency divider value (1-256). The primary SCK signal frequency is 2MHz.
 
 `int mode` - standart SPI mode number (0-3) which determines clock polarity and phase (http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus#Mode_numbers)
 
-### spi0_trans(byte[] data, int respond) [21] and spi1_trans(byte[] data, int respond) [31]
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "spiStart",
+  "params": [<spiNb>, <divider>, <mode>],
+  "id": <msgId>
+}
+```
 
-Executes SPI transaction. User should manually (using GPIO functions) drive slave select line low when executing the transaction. Depending on respond value, the device can send back the data that it received from the slave by sending message spi0_trans(byte[] slaveData) [21].
+### spiTx(int spiNb, byte[] data, int rsp)
+
+Executes SPI transaction. User should manually (using GPIO functions) drive slave select line low when executing the transaction. Depending on respond value, the device can send back the data that it received from the slave by sending message `spiTx(byte[] slaveData)`.
 
 Parameters:
 
+`int spiNb` - SPI module selection
+
 `byte[] data` - bytes which will be sent to the slave.
 
-`int respond` - value which tells if device should send back slave data: 0 - do not send, 1 - send back slave data.
+`int rsp` - value which tells if device should send back slave data: 0 - do not send, 1 - send back slave data.
 
-### spi0_end() [22] and spi1_end() [32]
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "spiTx",
+  "params": [<spiNb>, <data>, <rsp>],
+  "id": <msgId>
+}
+```
+
+### spiStop(int spiNb)
 
 Disables the SPI module.
+
+`int spiNb` - SPI module selection
+
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "spiStop",
+  "params": [<spiNb>],
+  "id": <msgId>
+}
+```
 
 ## I2C
 ### i2c_begin() [40]
