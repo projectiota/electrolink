@@ -246,9 +246,9 @@ JSON:
 }
 ```
 
-### spiTx(int spiNb, byte[] data, int rsp)
+### spiTxRx(int spiNb, byte[] data, int rsp)
 
-Executes SPI transaction. User should manually (using GPIO functions) drive slave select line low when executing the transaction. Depending on respond value, the device can send back the data that it received from the slave by sending message `spiTx(byte[] slaveData)`.
+Executes SPI transaction. User should manually (using GPIO functions) drive slave select line low when executing the transaction. Depending on respond value, the device can send back the data that it received from the slave by sending message `spiTxRx(byte[] slaveData)`.
 
 Parameters:
 
@@ -262,7 +262,7 @@ JSON:
 ```
 {
   "jsonrpc": "2.0",
-  "method": "spiTx",
+  "method": "spiTxRx",
   "params": [<spiNb>, <data>, <rsp>],
   "id": <msgId>
 }
@@ -336,15 +336,39 @@ JSON:
 ```
 
 ## System
-### registerWrite(int registerAddress, int value) [100]
+### regWrite(int regAddr, int val)
 
-Writes a value directly to the device register located at registerAddress.
+Writes a value directly to the device register located at regAddr address.
 
-### registerRead(int registerAddress) [101]
+`int regAddr` - register address
+
+`int val` - value to write
+
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "regWrite",
+  "params": [<regAddr>, <val>],
+  "id": <msgId>
+}
+```
+
+### regRead(int regAddr)
 
 Reads a register value. Responds with registerRead(int registerAddress, int registerValue) [101] message.
 
-### getDeviceInfo() [255]
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "regRead",
+  "params": [<regAddr>],
+  "id": <msgId>
+}
+```
+
+### getDeviceInfo()
 
 Returns device information. Responds with getDeviceInfo(int firmwareVersion, byte[] UID, int lpcPartNumber, int lpcBootCodeVersion) [255] message.
 
@@ -355,3 +379,4 @@ Returns device information. Responds with getDeviceInfo(int firmwareVersion, byt
 `int lpcPartNumber` - device part number which is read from the host device (LPC microcontroller).
 
 `int lpcBootCodeVersion` - device bootload code version which is read from the host device (LPC microcontroller).
+
