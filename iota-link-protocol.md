@@ -1,7 +1,7 @@
 
 ## GPIO
 
-### setFunction(int pinId, int fnc)
+### setFnc(int pinId, int fnc)
 
 Configures pin `pinId` to primary or secondary function. Secondary pin function should be enabled before calling any of the secondary functions (e.g. analog, pwm, spi, i2c).
 
@@ -16,7 +16,7 @@ JSON:
 ```
 {
   "jsonrpc": "2.0",
-  "method": "setPrimary",
+  "method": "setFnc",
   "params": [<pinId>, <fnc>],
   "id": <msgId>
 }
