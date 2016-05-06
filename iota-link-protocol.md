@@ -13,7 +13,7 @@ Parameters:
 By default GPIO is always the primary function. Some pins don't have secondary functions - that is their secondary function is also GPIO.
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "setPrimary",
@@ -32,7 +32,7 @@ Parameters:
 `int pinMode` - pin mode: 0 - input (high Z), 1 - output, 2 - input (pull down), 4 - input (pull up)
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "pinMode",
@@ -51,7 +51,7 @@ Parameters:
 `int value` - digital output value: 0 - LOW, 1 - HIGH
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "digitalWrite",
@@ -70,7 +70,7 @@ Parameters:
 Returns message `digitalRead(int pinId, int value)`, where the value is 0 (LOW state) or 1 (HIGH state)
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "digitalRead",
@@ -91,7 +91,7 @@ Parameters:
 `int mode` - interrupt trigger mode: 0-LEVEL LOW, 1-LEVEL HIGH, 2-EDGE CHANGE, 3-EDGE RISE, 4-EDGE FALL.
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "digitalRead",
@@ -108,7 +108,7 @@ Parameters:
 `int interruptId` - interrupt number (0-7)
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "detachInterrupt",
@@ -127,7 +127,7 @@ Parameters:
 Returns message where value is 10 bit ADC read value.
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "analogRead",
@@ -151,7 +151,7 @@ Parameters:
 Returns message pulseIn(int pulseWidth) [09], where the pulseWidth is 0 if no pulse was detected during timeout period or pulse duration in microseconds.
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "pulseIn",
@@ -172,7 +172,7 @@ Parameters:
 `int period` - PWM signal period in microseconds. 16 bit value (1-65536) for PWM0 and 32bit value for PWM1.
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "pwmStart",
@@ -195,7 +195,7 @@ Parameters:
 `int high_time` - PWM signal high time in microseconds. 16 bit value (0-65535) for PWM0 and 32bit value for PWM1. This value should be less than PWM period or undefined behavior might occur.
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "pwmSet",
@@ -213,7 +213,7 @@ Parameters:
 `int pwmNb` - PWM module selction
 
 JSON:
-```json
+```
 {
   "jsonrpc": "2.0",
   "method": "pwmStop",
