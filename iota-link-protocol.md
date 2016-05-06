@@ -1,11 +1,14 @@
 
 ## GPIO
 
-### setPrimary(int pinID) [01] and setSecondary(int pinID) [02]
+### setFunction(int pinId, int fnc)
 
 Configures pin pinID to primary or secondary function. Secondary pin function should be enabled before calling any of the secondary functions (e.g. analog, pwm, spi, i2c).
 
-Parameters: int pinID - pin number (0-33)
+Parameters:
+
+`int pinId` - pin number (0-33)
+`int fnc` - function number
 
 By default GPIO is always the primary function. Some pins don't have secondary functions - that is their secondary function is also GPIO.
 
@@ -14,26 +17,17 @@ JSON:
 {
   "jsonrpc": "2.0",
   "method": "setPrimary",
-  "params": [<pinId>],
-  "id": 1
+  "params": [<pinId>, <fnc>],
+  "id": <msgId>
 }
 ```
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "setSecondary",
-  "params": [<pinId>],
-  "id": 2
-}
-```
-
-### pinMode(int pinID, int pinMode) [3]
+### pinMode(int pinId, int pinMode)
 Configures GPIO pin mode. Pin should be set to GPIO function before configuring its GPIO mode.
 
 Parameters:
 
-`int pinID` - pin number (0-33)
+`int pinId` - pin number (0-33)
 
 `int pinMode` - pin mode: 0 - input (high Z), 1 - output, 2 - input (pull down), 4 - input (pull up)
 
@@ -43,16 +37,16 @@ JSON:
   "jsonrpc": "2.0",
   "method": "pinMode",
   "params": [<pinId>, <pinMode>],
-  "id": 3
+  "id": <msgId>
 }
 ```
 
-### digitalWrite(int pinID, int value) [4]
+### digitalWrite(int pinId, int value)
 Sets GPIO output high or low.
 
 Parameters:
 
-`int pinID` - pin number (0-33)
+`int pinId` - pin number (0-33)
 
 `int value` - digital output value: 0 - LOW, 1 - HIGH
 
@@ -62,18 +56,18 @@ JSON:
   "jsonrpc": "2.0",
   "method": "digitalWrite",
   "params": [<pinId>, <value>],
-  "id": 4
+  "id": <UUID>
 }
 ```
 
-### digitalRead (int pinID) [5]
+### digitalRead (int pinId)
 Reads digital state of the GPIO pin.
 
 Parameters:
 
-`int pinID` - pin number (0-33)
+`int pinId` - pin number (0-33)
 
-Returns message `digitalRead(int pinID, int value)`, where the value is 0 (LOW state) or 1 (HIGH state)
+Returns message `digitalRead(int pinId, int value)`, where the value is 0 (LOW state) or 1 (HIGH state)
 
 JSON:
 ```json
@@ -81,18 +75,18 @@ JSON:
   "jsonrpc": "2.0",
   "method": "digitalRead",
   "params": [<pinId>],
-  "id": 5
+  "id": <msgId>
 }
 ```
 
-### attachInterrupt(int interruptID, int pinID, int mode) [6]
-Attaches GPIO interrupt service to the specified pin. There is a total of 8 interrupts which can be attached to any pin. Interrupts can be configured to trigger at HIGH or LOW state or at RISING, FALLING or both edges. When the interrupt is triggered, device sends message interrupt(int interruptID, int event) [8], where event has the same meaning as mode.
+### attachInterrupt(int interruptId, int pinId, int mode)
+Attaches GPIO interrupt service to the specified pin. There is a total of 8 interrupts which can be attached to any pin. Interrupts can be configured to trigger at HIGH or LOW state or at RISING, FALLING or both edges. When the interrupt is triggered, device sends message `interrupt(int interruptId, int event)`, where event has the same meaning as mode.
 
 Parameters:
 
-`int interruptID` - interrupt number (0-7)
+`int interruptId` - interrupt number (0-7)
 
-`int pinID` - pin number (0-33)
+`int pinId` - pin number (0-33)
 
 `int mode` - interrupt trigger mode: 0-LEVEL LOW, 1-LEVEL HIGH, 2-EDGE CHANGE, 3-EDGE RISE, 4-EDGE FALL.
 
@@ -101,25 +95,25 @@ JSON:
 {
   "jsonrpc": "2.0",
   "method": "digitalRead",
-  "params": [<interruptID>, <pinID>, <mode>],
-  "id": 6
+  "params": [<interruptId>, <pinId>, <mode>],
+  "id": <msgId>
 }
 ```
 
-### detachInterrupt(int interruptID) [7]
+### detachInterrupt(int interruptId)
 Detaches (disables) specified GPIO interrupt.
 
 Parameters:
 
-`int interruptID` - interrupt number (0-7)
+`int interruptId` - interrupt number (0-7)
 
 JSON:
 ```json
 {
   "jsonrpc": "2.0",
   "method": "detachInterrupt",
-  "params": [<interruptID>],
-  "id": 7
+  "params": [<interruptId>],
+  "id": <msgId>
 }
 ```
 
@@ -142,13 +136,13 @@ JSON:
 }
 ```
 
-## pulseIn (int pinID, int level, int timeout) [09]
+## pulseIn (int pinId, int level, int timeout) [09]
 
 Measures pulse duration on a pin. Is compatible with Arduino command pulseIn (http://arduino.cc/en/Reference/PulseIn).
 
 Parameters:
 
-`int pinID` - pin number (0-33)
+`int pinId` - pin number (0-33)
 
 `int level` - level of the pulse (0 - LOW level, 1 - HIGH)
 
@@ -161,7 +155,7 @@ JSON:
 {
   "jsonrpc": "2.0",
   "method": "digitalRead",
-  "params": [<pinID>, <level>, <timeout>],
+  "params": [<pinId>, <level>, <timeout>],
   "id": 9
 }
 ```
