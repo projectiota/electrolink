@@ -136,7 +136,7 @@ JSON:
 }
 ```
 
-## pulseIn (int pinId, int level, int timeout) [09]
+## pulseIn (int pinId, int level, int timeout)
 
 Measures pulse duration on a pin. Is compatible with Arduino command pulseIn (http://arduino.cc/en/Reference/PulseIn).
 
@@ -182,7 +182,7 @@ JSON:
 ```
 
 
-### pwmSet(int pwmNb, int channel, int high_time)
+### pwmSet(int pwmNb, int channel, int highTime)
 
 Sets the high time of the PWM channel for a selected PWM module.
 
@@ -192,14 +192,14 @@ Parameters:
 
 `int channel` - PWM channel number (0-2)
 
-`int high_time` - PWM signal high time in microseconds. 16 bit value (0-65535) for PWM0 and 32bit value for PWM1. This value should be less than PWM period or undefined behavior might occur.
+`int highTime` - PWM signal high time in microseconds. 16 bit value (0-65535) for PWM0 and 32bit value for PWM1. This value should be less than PWM period or undefined behavior might occur.
 
 JSON:
 ```
 {
   "jsonrpc": "2.0",
   "method": "pwmSet",
-  "params": [<pwmNb>, <channlel>, <high_time>],
+  "params": [<pwmNb>, <channlel>, <highTime>],
   "id": <msgId>
 }
 ```
