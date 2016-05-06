@@ -246,7 +246,7 @@ JSON:
 }
 ```
 
-### spiTxRx(int spiNb, byte[] data, int rsp)
+### spiTransfer(int spiNb, byte[] data, int rsp)
 
 Executes SPI transaction. User should manually (using GPIO functions) drive slave select line low when executing the transaction. Depending on respond value, the device can send back the data that it received from the slave by sending message `spiTxRx(byte[] slaveData)`.
 
@@ -262,7 +262,7 @@ JSON:
 ```
 {
   "jsonrpc": "2.0",
-  "method": "spiTxRx",
+  "method": "spiTransfer",
   "params": [<spiNb>, <data>, <rsp>],
   "id": <msgId>
 }
@@ -299,7 +299,7 @@ JSON:
 }
 ```
 
-### i2cTxRx(int addr, byte[] wrData, int rdLen)
+### i2cTransfer(int addr, byte[] wrData, int rdLen)
 
 Executes I2C MASTER WRITE and MASTER READ transactions. The data received during MASTER READ transaction is sent back to the host via `i2cTxRx(int addr, byte[] rcvData)` message. If error occurs during transactions `i2cTxRx(int addr, int errorCode)` is sent back to the host.
 
@@ -315,7 +315,7 @@ JSON:
 ```
 {
   "jsonrpc": "2.0",
-  "method": "i2cRxTx",
+  "method": "i2cTransfer",
   "params": [<addr>, <wrData>, <rdLen>],
   "id": <msgId>
 }
