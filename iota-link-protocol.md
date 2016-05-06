@@ -118,7 +118,7 @@ JSON:
 ```
 
 ## Analog (ADC)
-### analogRead(int analogPinID) [10]
+### analogRead(int analogPinID)
 
 Parameters:
 
@@ -285,25 +285,55 @@ JSON:
 ```
 
 ## I2C
-### i2c_begin() [40]
+### i2cStart()
 
 Initializes I2C module.
 
-### i2c_trans(int address, byte[] writeData, int readLength) [41]
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "i2cStart",
+  "params": [],
+  "id": <msgId>
+}
+```
 
-Executes I2C MASTER WRITE and MASTER READ transactions. The data received during MASTER READ transaction is sent back to the host via i2c_trans(int address, byte[] receivedData) message. If error occurs during transactions i2c_trans(int address, int errorCode) [41] is sent back to the host.
+### i2cTxRx(int addr, byte[] wrData, int rdLen)
+
+Executes I2C MASTER WRITE and MASTER READ transactions. The data received during MASTER READ transaction is sent back to the host via `i2cTxRx(int addr, byte[] rcvData)` message. If error occurs during transactions `i2cTxRx(int addr, int errorCode)` is sent back to the host.
 
 Parameters:
 
 `int address` - slave device address.
 
-`byte[] writeData` - byte array which will be sent to the slave during MASTER WRITE. If blob size is 0 MASTER WRITE transaction is skipped.
+`byte[] wrData` - byte array which will be sent to the slave during MASTER WRITE. If blob size is 0 MASTER WRITE transaction is skipped.
 
-`int readLength` - number of bytes to read during MASTER READ transaction. If readLength is 0 MASTER READ transaction is not executed.
+`int rdLen` - number of bytes to read during MASTER READ transaction. If readLength is 0 MASTER READ transaction is not executed.
 
-### i2c_end() [42]
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "i2cRxTx",
+  "params": [<addr>, <wrData>, <rdLen>],
+  "id": <msgId>
+}
+```
+
+### i2cStop()
 
 Disables I2C module.
+
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "i2cStop",
+  "params": [],
+  "id": <msgId>
+}
+```
 
 ## System
 ### registerWrite(int registerAddress, int value) [100]
