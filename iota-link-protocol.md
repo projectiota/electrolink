@@ -370,13 +370,24 @@ JSON:
 
 ### getDeviceInfo()
 
-Returns device information. Responds with getDeviceInfo(int firmwareVersion, byte[] UID, int lpcPartNumber, int lpcBootCodeVersion) [255] message.
+Returns device information. Responds with getDeviceInfo(int firmwareVersion, byte[] UID, int partNumber, int bootloaderVersion) message.
+
+Return values:
 
 `int firmwareVersion` - [31:24] bits are device (firmware) type and is 0x55 (ASCII 'U') for UPER board, [23:16] bits are firmware major version and [15:0] bits are firmware minor version.
 
-`byte[] UID` - 16 byte long Unique IDentifier, which is read from the host device (LPC microcontroller).
+`byte[] UID` - 16 byte long Unique IDentifier, which is read from the device
 
-`int lpcPartNumber` - device part number which is read from the host device (LPC microcontroller).
+`int partNumber` - device part number which is read from the device
 
-`int lpcBootCodeVersion` - device bootload code version which is read from the host device (LPC microcontroller).
+`int bootloaderVersion` - device bootloader code version which is read from the device
 
+JSON:
+```
+{
+  "jsonrpc": "2.0",
+  "method": "regRead",
+  "params": [],
+  "id": <msgId>
+}
+```
