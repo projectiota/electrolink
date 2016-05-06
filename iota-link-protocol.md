@@ -336,7 +336,7 @@ JSON:
 ```
 
 ## System
-### regWrite(int regAddr, int val)
+### registerWrite(int regAddr, int val)
 
 Writes a value directly to the device register located at regAddr address.
 
@@ -348,13 +348,13 @@ JSON:
 ```
 {
   "jsonrpc": "2.0",
-  "method": "regWrite",
+  "method": "registerWrite",
   "params": [<regAddr>, <val>],
   "id": <msgId>
 }
 ```
 
-### regRead(int regAddr)
+### registerRead(int regAddr)
 
 Reads a register value. Responds with registerRead(int registerAddress, int registerValue) [101] message.
 
@@ -362,7 +362,7 @@ JSON:
 ```
 {
   "jsonrpc": "2.0",
-  "method": "regRead",
+  "method": "registerRead",
   "params": [<regAddr>],
   "id": <msgId>
 }
