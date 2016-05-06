@@ -3,7 +3,7 @@
 
 ### setFunction(int pinId, int fnc)
 
-Configures pin pinID to primary or secondary function. Secondary pin function should be enabled before calling any of the secondary functions (e.g. analog, pwm, spi, i2c).
+Configures pin `pinId` to primary or secondary function. Secondary pin function should be enabled before calling any of the secondary functions (e.g. analog, pwm, spi, i2c).
 
 Parameters:
 
@@ -132,7 +132,7 @@ JSON:
   "jsonrpc": "2.0",
   "method": "analogRead",
   "params": [<analogPinID>],
-  "id": 6
+  "id": <msgId>
 }
 ```
 
@@ -154,34 +154,74 @@ JSON:
 ```json
 {
   "jsonrpc": "2.0",
-  "method": "digitalRead",
+  "method": "pulseIn",
   "params": [<pinId>, <level>, <timeout>],
-  "id": 9
+  "id": <msgId>
 }
 ```
 
 ## PWM
-### pwm0_begin(int period) [50] and pwm1_begin(int period) [60]
+### pwmStart(int pwmNb, int period)
 
 Enables and configures PWM module. Each PWM module has 3 channels. PWM signal period (and frequency) is the same for all channels in one PWM module, but the signal high time (and duty cycle) can be different. PWM channels that are in the same module are synchronized.
 
 Parameters:
 
+`int pwmNb` - PWM module selection
+
 `int period` - PWM signal period in microseconds. 16 bit value (1-65536) for PWM0 and 32bit value for PWM1.
 
-### pwm0_set(int channel, int high_time) [51] and pwm1_set(int channel, int high_time) [61]
+JSON:
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "pwmStart",
+  "params": [<pwmNb>, <period>],
+  "id": <msgId>
+}
+```
 
-Sets the high time of the PWM channel.
+
+### pwmSet(int pwmNb, int channel, int high_time)
+
+Sets the high time of the PWM channel for a selected PWM module.
 
 Parameters:
+
+`int pwmNb` - PWM module selection
 
 `int channel` - PWM channel number (0-2)
 
 `int high_time` - PWM signal high time in microseconds. 16 bit value (0-65535) for PWM0 and 32bit value for PWM1. This value should be less than PWM period or undefined behavior might occur.
 
-### pwm0_end() [52] and pwm1_end() [62]
+JSON:
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "pwmSet",
+  "params": [<pwmNb>, <channlel>, <high_time>],
+  "id": <msgId>
+}
+```
+
+### pwmStop(int pwmNb)
 
 Stops the PWM module.
+
+Parameters:
+
+`int pwmNb` - PWM module selction
+
+JSON:
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "pwmStop",
+  "params": [<pwmNb>],
+  "id": <msgId>
+}
+```
+
 
 ## SPI
 ### spi0_begin(int divider, int mode) [20] and spi1_begin(int divider, int mode) [30]
