@@ -8,7 +8,7 @@ Configures pin `pinId` to primary or secondary function. Secondary pin function 
 Parameters:
 
 `int pinId` - pin number (0-33)
-`int fnc` - function number
+`int pinFnc` - function number
 
 By default GPIO is always the primary function. Some pins don't have secondary functions - that is their secondary function is also GPIO.
 
