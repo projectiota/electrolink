@@ -1,7 +1,20 @@
+## Function Codes
+
+| FNC                                      | CODE     |
+|:-----------------------------------------|:---------|
+| `pinFunction(int pinId, int pinFnc)`     | 0x01     |
+| `pinMode(int pinId, int pinMode)`        | 0x02     |
+| `digitalWrite(int pinId, int value)`     | 0x03     |
+| `digitalRead (int pinId)`                | 0x04     |
+| `pinFunction(int pinId, int pinFnc)`     | 0x05     |
+| `pinFunction(int pinId, int pinFnc)`     | 0x06     |
+| `pinFunction(int pinId, int pinFnc)`     | 0x07     |
+| `pinFunction(int pinId, int pinFnc)`     | 0x08     |
+
 
 ## GPIO
 
-### pinFunction(int pinId, int pinFnc)
+### `[0x01]` pinFunction(int pinId, int pinFnc)
 
 Configures pin `pinId` to primary or secondary function. Secondary pin function should be enabled before calling any of the secondary functions (e.g. analog, pwm, spi, i2c).
 
@@ -22,7 +35,7 @@ JSON:
 }
 ```
 
-### pinMode(int pinId, int pinMode)
+### `[0x02]` pinMode(int pinId, int pinMode)
 Configures GPIO pin mode. Pin should be set to GPIO function before configuring its GPIO mode.
 
 Parameters:
@@ -41,7 +54,7 @@ JSON:
 }
 ```
 
-### digitalWrite(int pinId, int value)
+### `[0x03]`digitalWrite(int pinId, int value)
 Sets GPIO output high or low.
 
 Parameters:
@@ -60,7 +73,7 @@ JSON:
 }
 ```
 
-### digitalRead (int pinId)
+### `[0x04]` digitalRead (int pinId)
 Reads digital state of the GPIO pin.
 
 Parameters:
