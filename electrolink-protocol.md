@@ -1,15 +1,15 @@
 ## Function Codes
 
-| SUBSYS              | FNC                                               | CODE     |
-|:--------------------|:--------------------------------------------------|:---------|
-| GPIO                | pinFunction(int pinId, int pinFnc)                | 0x01     |
-|                     | pinMode(int pinId, int pinMode)                   | 0x02     |
-|                     | digitalWrite(int pinId, int value)                | 0x03     |
-|                     | digitalRead (int pinId)                           | 0x04     |
-| INT                 | attachInterrupt(int intId, int pinId, int mode)   | 0x05     |
-|                     | detachInterrupt(int intId)                        | 0x06     |
-|                     | pinFunction(int pinId, int pinFnc)                | 0x07     |
-|                     | pinFunction(int pinId, int pinFnc)                | 0x08     |
+| SUBSYS              | FNC                                                 | CODE     |
+|:--------------------|:----------------------------------------------------|:---------|
+| GPIO                | **pinFunction**(int pinId, int pinFnc)              | 0x01     |
+|                     | **pinMode**(int pinId, int pinMode)                 | 0x02     |
+|                     | **digitalWrite**(int pinId, int value)              | 0x03     |
+|                     | **digitalRead**(int pinId)                          | 0x04     |
+| INT                 | **attachInterrupt**(int intId, int pinId, int mode) | 0x05     |
+|                     | detachInterrupt(int intId)                          | 0x06     |
+|                     | pinFunction(int pinId, int pinFnc)                  | 0x07     |
+|                     | pinFunction(int pinId, int pinFnc)                  | 0x08     |
 
 
 ## GPIO
