@@ -11,6 +11,15 @@
 | ADC                 | **analogRead**(int analogPinID)                     | 0x20      |
 |                     | **pulseIn**(int pinId, int level, int timeout)      | 0x21      |
 | PWM                 | **pwmStart**(int pwmNb, int period)                 | 0x30      |
+|                     | **pwmSet**(int pwmNb, int channel, int highTime)    | 0x31      |
+|                     | **pwmStop**(int pwmNb)                              | 0x32      |
+| SPI                 | **spiStart**(int spiNb, int divider, int mode)      | 0x40      |
+|                     | **spiTransfer**(int spiNb, byte[] data, int rsp)    | 0x41      |
+|                     | **spiStop**(int spiNb)                              | 0x42      |
+| I2C                 | **i2cStart**()                                      | 0x50      |
+|                     | **i2cTransfer**(int addr, byte[] wrData, int rdLen) | 0x51      |
+|                     | **i2cStop**()                                       | 0x52      |
+
 
 
 ## GPIO
@@ -150,7 +159,7 @@ JSON:
 }
 ```
 
-## `[0x21]` pulseIn(int pinId, int level, int timeout)
+### `[0x21]` pulseIn(int pinId, int level, int timeout)
 
 Measures pulse duration on a pin. Is compatible with Arduino command pulseIn (http://arduino.cc/en/Reference/PulseIn).
 
@@ -218,7 +227,7 @@ JSON:
 }
 ```
 
-### pwmStop(int pwmNb)
+### `[0x32]` pwmStop(int pwmNb)
 
 Stops the PWM module.
 
@@ -238,7 +247,7 @@ JSON:
 
 
 ## SPI
-### spiStart(int spiNb, int divider, int mode)
+### `[0x40]` spiStart(int spiNb, int divider, int mode)
 
 Starts and configures SPI module. This function configure device to master mode. Slave mode is not supported.
 
@@ -260,7 +269,7 @@ JSON:
 }
 ```
 
-### spiTransfer(int spiNb, byte[] data, int rsp)
+### `[0x41]` spiTransfer(int spiNb, byte[] data, int rsp)
 
 Executes SPI transaction. User should manually (using GPIO functions) drive slave select line low when executing the transaction. Depending on respond value, the device can send back the data that it received from the slave by sending message `spiTxRx(byte[] slaveData)`.
 
@@ -282,7 +291,7 @@ JSON:
 }
 ```
 
-### spiStop(int spiNb)
+### `[0x42]` spiStop(int spiNb)
 
 Disables the SPI module.
 
@@ -299,7 +308,7 @@ JSON:
 ```
 
 ## I2C
-### i2cStart()
+### `[0x50]` i2cStart()
 
 Initializes I2C module.
 
@@ -313,7 +322,7 @@ JSON:
 }
 ```
 
-### i2cTransfer(int addr, byte[] wrData, int rdLen)
+### `[0x51]` i2cTransfer(int addr, byte[] wrData, int rdLen)
 
 Executes I2C MASTER WRITE and MASTER READ transactions. The data received during MASTER READ transaction is sent back to the host via `i2cTxRx(int addr, byte[] rcvData)` message. If error occurs during transactions `i2cTxRx(int addr, int errorCode)` is sent back to the host.
 
@@ -335,7 +344,7 @@ JSON:
 }
 ```
 
-### i2cStop()
+### `[0x52]` i2cStop()
 
 Disables I2C module.
 
