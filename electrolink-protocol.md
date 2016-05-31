@@ -19,6 +19,9 @@
 | I2C                 | **i2cStart**()                                      | 0x50      |
 |                     | **i2cTransfer**(int addr, byte[] wrData, int rdLen) | 0x51      |
 |                     | **i2cStop**()                                       | 0x52      |
+| SYSTEM              | **registerWrite**(int regAddr, int val)             | 0x60      |
+|                     | **registerRead**(int regAddr)                       | 0x61      |
+|                     | **getDeviceInfo**()                                 | 0x62      |
 
 
 
@@ -359,7 +362,7 @@ JSON:
 ```
 
 ## System
-### registerWrite(int regAddr, int val)
+### `[0x60]` registerWrite(int regAddr, int val)
 
 Writes a value directly to the device register located at regAddr address.
 
@@ -377,7 +380,7 @@ JSON:
 }
 ```
 
-### registerRead(int regAddr)
+### `[0x61]` registerRead(int regAddr)
 
 Reads a register value. Responds with registerRead(int registerAddress, int registerValue) [101] message.
 
@@ -391,7 +394,7 @@ JSON:
 }
 ```
 
-### getDeviceInfo()
+### `[0x62]` getDeviceInfo()
 
 Returns device information. Responds with getDeviceInfo(int firmwareVersion, byte[] UID, int partNumber, int bootloaderVersion) message.
 
