@@ -1,15 +1,15 @@
 ## Function Codes
 
-| FNC                                      | CODE     |
-|:-----------------------------------------|:---------|
-| `pinFunction(int pinId, int pinFnc)`     | 0x01     |
-| `pinMode(int pinId, int pinMode)`        | 0x02     |
-| `digitalWrite(int pinId, int value)`     | 0x03     |
-| `digitalRead (int pinId)`                | 0x04     |
-| `pinFunction(int pinId, int pinFnc)`     | 0x05     |
-| `pinFunction(int pinId, int pinFnc)`     | 0x06     |
-| `pinFunction(int pinId, int pinFnc)`     | 0x07     |
-| `pinFunction(int pinId, int pinFnc)`     | 0x08     |
+| SUBSYS              | FNC                                               | CODE     |
+|:--------------------|:--------------------------------------------------|:---------|
+| GPIO                | pinFunction(int pinId, int pinFnc)                | 0x01     |
+|                     | pinMode(int pinId, int pinMode)                   | 0x02     |
+|                     | digitalWrite(int pinId, int value)                | 0x03     |
+|                     | digitalRead (int pinId)                           | 0x04     |
+| INT                 | attachInterrupt(int intId, int pinId, int mode)   | 0x05     |
+|                     | detachInterrupt(int intId)                        | 0x06     |
+|                     | pinFunction(int pinId, int pinFnc)                | 0x07     |
+|                     | pinFunction(int pinId, int pinFnc)                | 0x08     |
 
 
 ## GPIO
@@ -92,7 +92,7 @@ JSON:
 }
 ```
 
-### attachInterrupt(int intId, int pinId, int mode)
+### `[0x05]` attachInterrupt(int intId, int pinId, int mode)
 Attaches GPIO interrupt service to the specified pin. There is a total of 8 interrupts which can be attached to any pin. Interrupts can be configured to trigger at HIGH or LOW state or at RISING, FALLING or both edges. When the interrupt is triggered, device sends message `interrupt(int interruptId, int event)`, where event has the same meaning as mode.
 
 Parameters:
@@ -113,7 +113,7 @@ JSON:
 }
 ```
 
-### detachInterrupt(int intId)
+### `[0x06]` detachInterrupt(int intId)
 Detaches (disables) specified GPIO interrupt.
 
 Parameters:
