@@ -41,10 +41,9 @@ By default GPIO is always the primary function. Some pins don't have secondary f
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "pinFunction",
+  "method": 0x01,
   "params": [<pinId>, <pinFnc>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -60,10 +59,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "pinMode",
+  "method": 0x02,
   "params": [<pinId>, <pinMode>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -79,10 +77,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "digitalWrite",
+  "method": 0x03,
   "params": [<pinId>, <value>],
-  "id": <UUID>
+  "rto": <replyTopic>
 }
 ```
 
@@ -98,10 +95,9 @@ Returns message `digitalRead(int pinId, int value)`, where the value is 0 (LOW s
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "digitalRead",
+  "method": 0x04,
   "params": [<pinId>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -119,10 +115,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "digitalRead",
+  "method": 0x05,
   "params": [<intId>, <pinId>, <mode>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -136,10 +131,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "detachInterrupt",
+  "method": 0x12,
   "params": [<intId>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -155,10 +149,9 @@ Returns message where value is 10 bit ADC read value.
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "analogRead",
+  "method": 0x20,
   "params": [<analogPinID>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -179,10 +172,9 @@ Returns message pulseIn(int pulseWidth) [09], where the pulseWidth is 0 if no pu
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "pulseIn",
+  "method": 0x21,
   "params": [<pinId>, <level>, <timeout>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -200,10 +192,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "pwmStart",
+  "method": 0x30,
   "params": [<pwmNb>, <period>],
-  "id": <msgId>
+  "id": <replyTopic>
 }
 ```
 
@@ -223,10 +214,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "pwmSet",
+  "method": 0x31,
   "params": [<pwmNb>, <channlel>, <highTime>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -241,10 +231,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "pwmStop",
+  "method": 0x32,
   "params": [<pwmNb>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -265,10 +254,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "spiStart",
+  "method": 0x40,
   "params": [<spiNb>, <divider>, <mode>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -287,10 +275,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "spiTransfer",
+  "method": 0x41,
   "params": [<spiNb>, <data>, <rsp>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -303,10 +290,9 @@ Disables the SPI module.
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "spiStop",
+  "method": 0x42,
   "params": [<spiNb>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -318,10 +304,9 @@ Initializes I2C module.
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "i2cStart",
+  "method": 0x50,
   "params": [],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -340,10 +325,9 @@ Parameters:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "i2cTransfer",
+  "method": 0x50,
   "params": [<addr>, <wrData>, <rdLen>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -354,10 +338,9 @@ Disables I2C module.
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
   "method": "i2cStop",
   "params": [],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -373,10 +356,9 @@ Writes a value directly to the device register located at regAddr address.
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "registerWrite",
+  "method": 0x60,
   "params": [<regAddr>, <val>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -387,10 +369,9 @@ Reads a register value. Responds with registerRead(int registerAddress, int regi
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "registerRead",
+  "method": 0x61,
   "params": [<regAddr>],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
 
@@ -411,9 +392,8 @@ Return values:
 JSON:
 ```
 {
-  "jsonrpc": "2.0",
-  "method": "regRead",
+  "method": 0x61,
   "params": [],
-  "id": <msgId>
+  "rto": <replyTopic>
 }
 ```
