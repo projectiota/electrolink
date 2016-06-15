@@ -41,7 +41,7 @@ By default GPIO is always the primary function. Some pins don't have secondary f
 JSON:
 ```
 {
-  "method": 0x01,
+  "fnc": 0x01,
   "params": [<pinId>, <pinFnc>],
   "rto": <replyTopic>
 }
@@ -59,7 +59,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x02,
+  "fnc": 0x02,
   "params": [<pinId>, <pinMode>],
   "rto": <replyTopic>
 }
@@ -77,7 +77,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x03,
+  "fnc": 0x03,
   "params": [<pinId>, <value>],
   "rto": <replyTopic>
 }
@@ -95,7 +95,7 @@ Returns message `digitalRead(int pinId, int value)`, where the value is 0 (LOW s
 JSON:
 ```
 {
-  "method": 0x04,
+  "fnc": 0x04,
   "params": [<pinId>],
   "rto": <replyTopic>
 }
@@ -115,7 +115,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x05,
+  "fnc": 0x05,
   "params": [<intId>, <pinId>, <mode>],
   "rto": <replyTopic>
 }
@@ -131,7 +131,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x12,
+  "fnc": 0x12,
   "params": [<intId>],
   "rto": <replyTopic>
 }
@@ -149,7 +149,7 @@ Returns message where value is 10 bit ADC read value.
 JSON:
 ```
 {
-  "method": 0x20,
+  "fnc": 0x20,
   "params": [<analogPinID>],
   "rto": <replyTopic>
 }
@@ -172,7 +172,7 @@ Returns message pulseIn(int pulseWidth) [09], where the pulseWidth is 0 if no pu
 JSON:
 ```
 {
-  "method": 0x21,
+  "fnc": 0x21,
   "params": [<pinId>, <level>, <timeout>],
   "rto": <replyTopic>
 }
@@ -192,7 +192,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x30,
+  "fnc": 0x30,
   "params": [<pwmNb>, <period>],
   "id": <replyTopic>
 }
@@ -214,7 +214,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x31,
+  "fnc": 0x31,
   "params": [<pwmNb>, <channlel>, <highTime>],
   "rto": <replyTopic>
 }
@@ -231,7 +231,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x32,
+  "fnc": 0x32,
   "params": [<pwmNb>],
   "rto": <replyTopic>
 }
@@ -254,7 +254,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x40,
+  "fnc": 0x40,
   "params": [<spiNb>, <divider>, <mode>],
   "rto": <replyTopic>
 }
@@ -275,7 +275,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x41,
+  "fnc": 0x41,
   "params": [<spiNb>, <data>, <rsp>],
   "rto": <replyTopic>
 }
@@ -290,7 +290,7 @@ Disables the SPI module.
 JSON:
 ```
 {
-  "method": 0x42,
+  "fnc": 0x42,
   "params": [<spiNb>],
   "rto": <replyTopic>
 }
@@ -304,7 +304,7 @@ Initializes I2C module.
 JSON:
 ```
 {
-  "method": 0x50,
+  "fnc": 0x50,
   "params": [],
   "rto": <replyTopic>
 }
@@ -325,7 +325,7 @@ Parameters:
 JSON:
 ```
 {
-  "method": 0x50,
+  "fnc": 0x50,
   "params": [<addr>, <wrData>, <rdLen>],
   "rto": <replyTopic>
 }
@@ -338,7 +338,7 @@ Disables I2C module.
 JSON:
 ```
 {
-  "method": "i2cStop",
+  "fnc": "i2cStop",
   "params": [],
   "rto": <replyTopic>
 }
@@ -356,7 +356,7 @@ Writes a value directly to the device register located at regAddr address.
 JSON:
 ```
 {
-  "method": 0x60,
+  "fnc": 0x60,
   "params": [<regAddr>, <val>],
   "rto": <replyTopic>
 }
@@ -369,7 +369,7 @@ Reads a register value. Responds with registerRead(int registerAddress, int regi
 JSON:
 ```
 {
-  "method": 0x61,
+  "fnc": 0x61,
   "params": [<regAddr>],
   "rto": <replyTopic>
 }
@@ -392,7 +392,7 @@ Return values:
 JSON:
 ```
 {
-  "method": 0x61,
+  "fnc": 0x61,
   "params": [],
   "rto": <replyTopic>
 }
