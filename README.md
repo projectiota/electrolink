@@ -13,7 +13,7 @@ Protocol specification can be found in [electrolink-protocol.md](https://github.
 ## Authors
 Authors of of the Electrolink protocol are:
 - Drasko DRASKOVIC - [@drasko](https://github.com/drasko)
-- Paul RATGHEB - [@ks156](https://github.com/ks156)
+- Paul RATHGEB - [@ks156](https://github.com/ks156)
 
 ## License
 [Apache-2.0](https://github.com/projectiota/electrolink/blob/master/LICENSE)
