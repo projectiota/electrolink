@@ -2,7 +2,7 @@
 
 | SUBSYS              | FNC                                                 | CODE      |
 |:--------------------|:----------------------------------------------------|:----------|
-| GPIO                | **pinFunction**(int pinId, int pinFnc)              | 0x01      |
+| GPIO                | **pinFunction**(int pinId, int pinFnc)              | 100       |
 |                     | **pinMode**(int pinId, int pinMode)                 | 0x02      |
 |                     | **digitalWrite**(int pinId, int value)              | 0x03      |
 |                     | **digitalRead**(int pinId)                          | 0x04      |
