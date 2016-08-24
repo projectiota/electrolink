@@ -10,5 +10,10 @@ Since hosting whole WS or HTTP server would be heavy for constrained devices, it
 
 Protocol specification can be found in [electrolink-protocol.md](https://github.com/projectiota/electrolink/blob/master/electrolink-protocol.md) file
 
+## Authors
+Authors of of the Electrolink protocol are:
+- Drasko DRASKOVIC - [@drasko](https://github.com/drasko)
+- Paul RATGHEB - [@ks156](https://github.com/ks156)
+
 ## License
 [Apache-2.0](https://github.com/projectiota/electrolink/blob/master/LICENSE)
