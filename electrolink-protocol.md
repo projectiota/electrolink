@@ -1,33 +1,33 @@
 ## Function Codes
 
-| SUBSYS              | FNC                                                 | CODE      |
-|:--------------------|:----------------------------------------------------|:----------|
-| GPIO                | **pinFunction**(int pinId, int pinFnc)              | 10        |
-|                     | **pinMode**(int pinId, int pinMode)                 | 20        |
-|                     | **digitalWrite**(int pinId, int value)              | 30        |
-|                     | **digitalRead**(int pinId)                          | 40        |
-| INT                 | **attachInterrupt**(int intId, int pinId, int mode) | 50        |
-|                     | **detachInterrupt**(int intId)                      | 60        |
-| ADC                 | **analogRead**(int analogPinID)                     | 70        |
-|                     | **pulseIn**(int pinId, int level, int timeout)      | 80        |
-| PWM                 | **pwmStart**(int pwmNb, int period)                 | 90        |
-|                     | **pwmSet**(int pwmNb, int channel, int highTime)    | 100       |
-|                     | **pwmStop**(int pwmNb)                              | 110       |
-| SPI                 | **spiStart**(int spiNb, int divider, int mode)      | 120       |
-|                     | **spiTransfer**(int spiNb, byte[] data, int rsp)    | 130       |
-|                     | **spiStop**(int spiNb)                              | 140       |
-| I2C                 | **i2cStart**()                                      | 150       |
-|                     | **i2cTransfer**(int addr, byte[] wrData, int rdLen) | 160       |
-|                     | **i2cStop**()                                       | 170       |
-| SYSTEM              | **registerWrite**(int regAddr, int val)             | 180       |
-|                     | **registerRead**(int regAddr)                       | 190       |
-|                     | **getDeviceInfo**()                                 | 200       |
+| SUBSYS              | FNC                                                 |
+|:--------------------|:----------------------------------------------------|
+| GPIO                | **pinFunction**(int pinId, int pinFnc)              |
+|                     | **pinMode**(int pinId, int pinMode)                 |
+|                     | **digitalWrite**(int pinId, int value)              |
+|                     | **digitalRead**(int pinId)                          |
+| INT                 | **attachInterrupt**(int intId, int pinId, int mode) |
+|                     | **detachInterrupt**(int intId)                      |
+| ADC                 | **analogRead**(int analogPinID)                     |
+|                     | **pulseIn**(int pinId, int level, int timeout)      |
+| PWM                 | **pwmStart**(int pwmNb, int period)                 |
+|                     | **pwmSet**(int pwmNb, int channel, int highTime)    |
+|                     | **pwmStop**(int pwmNb)                              |
+| SPI                 | **spiStart**(int spiNb, int divider, int mode)      |
+|                     | **spiTransfer**(int spiNb, byte[] data, int rsp)    |
+|                     | **spiStop**(int spiNb)                              |
+| I2C                 | **i2cStart**()                                      |
+|                     | **i2cTransfer**(int addr, byte[] wrData, int rdLen) |
+|                     | **i2cStop**()                                       |
+| SYSTEM              | **registerWrite**(int regAddr, int val)             |
+|                     | **registerRead**(int regAddr)                       |
+|                     | **getDeviceInfo**()                                 |
 
 
 
 ## GPIO
 
-### `[10]` pinFunction(int pinId, int pinFnc)
+### pinFunction(int pinId, int pinFnc)
 
 Configures pin `pinId` to primary or secondary function. Secondary pin function should be enabled before calling any of the secondary functions (e.g. analog, pwm, spi, i2c).
 
@@ -41,13 +41,12 @@ By default GPIO is always the primary function. Some pins don't have secondary f
 JSON:
 ```
 {
-  "fnc": 10,
-  "params": [<pinId>, <pinFnc>],
-  "rto": <replyTopic>
+  "method": "pinFunction",
+  "params": [<pinId>, <pinFnc>]
 }
 ```
 
-### `[20]` pinMode(int pinId, int pinMode)
+### pinMode(int pinId, int pinMode)
 Configures GPIO pin mode. Pin should be set to GPIO function before configuring its GPIO mode.
 
 Parameters:
@@ -59,13 +58,12 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 20,
-  "params": [<pinId>, <pinMode>],
-  "rto": <replyTopic>
+  "method": "pinMode",
+  "params": [<pinId>, <pinMode>]
 }
 ```
 
-### `[30]`digitalWrite(int pinId, int value)
+### digitalWrite(int pinId, int value)
 Sets GPIO output high or low.
 
 Parameters:
@@ -77,13 +75,12 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 30
-  "params": [<pinId>, <value>],
-  "rto": <replyTopic>
+  "method": "digitalWrite"
+  "params": [<pinId>, <value>]
 }
 ```
 
-### `[40]` digitalRead (int pinId)
+### digitalRead (int pinId)
 Reads digital state of the GPIO pin.
 
 Parameters:
@@ -95,13 +92,12 @@ Returns message `digitalRead(int pinId, int value)`, where the value is 0 (LOW s
 JSON:
 ```
 {
-  "fnc": 40,
-  "params": [<pinId>],
-  "rto": <replyTopic>
+  "method": "digitalRead",
+  "params": [<pinId>]
 }
 ```
 
-### `[50]` attachInterrupt(int intId, int pinId, int mode)
+### attachInterrupt(int intId, int pinId, int mode)
 Attaches GPIO interrupt service to the specified pin. There is a total of 8 interrupts which can be attached to any pin. Interrupts can be configured to trigger at HIGH or LOW state or at RISING, FALLING or both edges. When the interrupt is triggered, device sends message `interrupt(int interruptId, int event)`, where event has the same meaning as mode.
 
 Parameters:
@@ -115,13 +111,12 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 50,
-  "params": [<intId>, <pinId>, <mode>],
-  "rto": <replyTopic>
+  "method": "attachInterrupt",
+  "params": [<intId>, <pinId>, <mode>]
 }
 ```
 
-### `[60]` detachInterrupt(int intId)
+### detachInterrupt(int intId)
 Detaches (disables) specified GPIO interrupt.
 
 Parameters:
@@ -131,9 +126,8 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 60,
-  "params": [<intId>],
-  "rto": <replyTopic>
+  "method": "detachInterrupt",
+  "params": [<intId>]
 }
 ```
 
@@ -155,7 +149,7 @@ JSON:
 }
 ```
 
-### `[80]` pulseIn(int pinId, int level, int timeout)
+### pulseIn(int pinId, int level, int timeout)
 
 Measures pulse duration on a pin. Is compatible with Arduino command pulseIn (http://arduino.cc/en/Reference/PulseIn).
 
@@ -172,14 +166,13 @@ Returns message pulseIn(int pulseWidth) [09], where the pulseWidth is 0 if no pu
 JSON:
 ```
 {
-  "fnc": 80,
-  "params": [<pinId>, <level>, <timeout>],
-  "rto": <replyTopic>
+  "method": "pulseIn",
+  "params": [<pinId>, <level>, <timeout>]
 }
 ```
 
 ## PWM
-### `[90]` pwmStart(int pwmNb, int period)
+### pwmStart(int pwmNb, int period)
 
 Enables and configures PWM module. Each PWM module has 3 channels. PWM signal period (and frequency) is the same for all channels in one PWM module, but the signal high time (and duty cycle) can be different. PWM channels that are in the same module are synchronized.
 
@@ -192,14 +185,13 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 90,
-  "params": [<pwmNb>, <period>],
-  "id": <replyTopic>
+  "method": "pwmStart",
+  "params": [<pwmNb>, <period>]
 }
 ```
 
 
-### `[100]` pwmSet(int pwmNb, int channel, int highTime)
+### pwmSet(int pwmNb, int channel, int highTime)
 
 Sets the high time of the PWM channel for a selected PWM module.
 
@@ -214,13 +206,12 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 100,
-  "params": [<pwmNb>, <channlel>, <highTime>],
-  "rto": <replyTopic>
+  "method": "pwmSet",
+  "params": [<pwmNb>, <channlel>, <highTime>]
 }
 ```
 
-### `[110]` pwmStop(int pwmNb)
+### pwmStop(int pwmNb)
 
 Stops the PWM module.
 
@@ -231,15 +222,14 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 110,
-  "params": [<pwmNb>],
-  "rto": <replyTopic>
+  "method": "pwmStop",
+  "params": [<pwmNb>]
 }
 ```
 
 
 ## SPI
-### `[120]` spiStart(int spiNb, int divider, int mode)
+### spiStart(int spiNb, int divider, int mode)
 
 Starts and configures SPI module. This function configure device to master mode. Slave mode is not supported.
 
@@ -254,13 +244,12 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 120,
-  "params": [<spiNb>, <divider>, <mode>],
-  "rto": <replyTopic>
+  "method": "spiStart",
+  "params": [<spiNb>, <divider>, <mode>]
 }
 ```
 
-### `[130]` spiTransfer(int spiNb, byte[] data, int rsp)
+### spiTransfer(int spiNb, byte[] data, int rsp)
 
 Executes SPI transaction. User should manually (using GPIO functions) drive slave select line low when executing the transaction. Depending on respond value, the device can send back the data that it received from the slave by sending message `spiTxRx(byte[] slaveData)`.
 
@@ -275,13 +264,12 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 130,
-  "params": [<spiNb>, <data>, <rsp>],
-  "rto": <replyTopic>
+  "method": "spiTransfer",
+  "params": [<spiNb>, <data>, <rsp>]
 }
 ```
 
-### `[140]` spiStop(int spiNb)
+### spiStop(int spiNb)
 
 Disables the SPI module.
 
@@ -290,27 +278,25 @@ Disables the SPI module.
 JSON:
 ```
 {
-  "fnc": 140,
-  "params": [<spiNb>],
-  "rto": <replyTopic>
+  "method": "spiStop",
+  "params": [<spiNb>]
 }
 ```
 
 ## I2C
-### `[150]` i2cStart()
+### i2cStart()
 
 Initializes I2C module.
 
 JSON:
 ```
 {
-  "fnc": 150,
-  "params": [],
-  "rto": <replyTopic>
+  "method": "i2cStart",
+  "params": []
 }
 ```
 
-### `[160]` i2cTransfer(int addr, byte[] wrData, int rdLen)
+### i2cTransfer(int addr, byte[] wrData, int rdLen)
 
 Executes I2C MASTER WRITE and MASTER READ transactions. The data received during MASTER READ transaction is sent back to the host via `i2cTxRx(int addr, byte[] rcvData)` message. If error occurs during transactions `i2cTxRx(int addr, int errorCode)` is sent back to the host.
 
@@ -325,27 +311,25 @@ Parameters:
 JSON:
 ```
 {
-  "fnc": 160,
-  "params": [<addr>, <wrData>, <rdLen>],
-  "rto": <replyTopic>
+  "method": "i2cTransfer",
+  "params": [<addr>, <wrData>, <rdLen>]
 }
 ```
 
-### `170` i2cStop()
+### i2cStop()
 
 Disables I2C module.
 
 JSON:
 ```
 {
-  "fnc": 170,
-  "params": [],
-  "rto": <replyTopic>
+  "method": "i2cStop",
+  "params": []
 }
 ```
 
 ## System
-### `[180]` registerWrite(int regAddr, int val)
+### registerWrite(int regAddr, int val)
 
 Writes a value directly to the device register located at regAddr address.
 
@@ -356,26 +340,24 @@ Writes a value directly to the device register located at regAddr address.
 JSON:
 ```
 {
-  "fnc": 180,
-  "params": [<regAddr>, <val>],
-  "rto": <replyTopic>
+  "method": "registerWrite",
+  "params": [<regAddr>, <val>]
 }
 ```
 
-### `[190]` registerRead(int regAddr)
+### registerRead(int regAddr)
 
 Reads a register value. Responds with registerRead(int registerAddress, int registerValue) [101] message.
 
 JSON:
 ```
 {
-  "fnc": 190,
-  "params": [<regAddr>],
-  "rto": <replyTopic>
+  "method": "registerRead",
+  "params": [<regAddr>]
 }
 ```
 
-### `[200]` getDeviceInfo()
+### getDeviceInfo()
 
 Returns device information. Responds with getDeviceInfo(int firmwareVersion, byte[] UID, int partNumber, int bootloaderVersion) message.
 
@@ -392,8 +374,7 @@ Return values:
 JSON:
 ```
 {
-  "fnc": 200,
-  "params": [],
-  "rto": <replyTopic>
+  "method": "getDeviceInfo",
+  "params": []
 }
 ```
