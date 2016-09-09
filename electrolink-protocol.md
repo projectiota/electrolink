@@ -144,8 +144,7 @@ JSON:
 ```
 {
   "method": "analogRead",
-  "params": [<analogPinID>],
-  "rto": <replyTopic>
+  "params": [<analogPinID>]
 }
 ```
 
