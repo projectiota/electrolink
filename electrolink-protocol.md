@@ -132,7 +132,7 @@ JSON:
 ```
 
 ## Analog (ADC)
-### `[70]` analogRead(int analogPinID)
+### analogRead(int analogPinID)
 
 Parameters:
 
@@ -143,7 +143,7 @@ Returns message where value is 10 bit ADC read value.
 JSON:
 ```
 {
-  "fnc": 70,
+  "method": "analogRead",
   "params": [<analogPinID>],
   "rto": <replyTopic>
 }
