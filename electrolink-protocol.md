@@ -106,7 +106,12 @@ Parameters:
 
 `int pinId` - pin number (0-33)
 
-`int mode` - interrupt trigger mode: 0-LEVEL LOW, 1-LEVEL HIGH, 2-EDGE CHANGE, 3-EDGE RISE, 4-EDGE FALL.
+`int mode` - interrupt trigger mode:
+ - `0` - LEVEL LOW
+ - `1` - LEVEL HIGH
+ - `2` - EDGE CHANGE
+ - `3` - EDGE RISE
+ - `4` - EDGE FALL
 
 JSON:
 ```
