@@ -21,7 +21,7 @@
 |                     | **i2cStop**()                                       |
 | UART                | **uartStart**(int baudrate)                         |
 |                     | **uartSend**(byte[] wrData)                           |
-|                     | **uartReveive**(int rdLen)                          |
+|                     | **uartReceive**(int rdLen)                          |
 |                     | **uartStop**()
 | SYSTEM              | **registerWrite**(int regAddr, int val)             |
 |                     | **registerRead**(int regAddr)                       |
