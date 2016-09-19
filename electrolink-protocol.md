@@ -19,6 +19,10 @@
 | I2C                 | **i2cStart**()                                      |
 |                     | **i2cTransfer**(int addr, byte[] wrData, int rdLen) |
 |                     | **i2cStop**()                                       |
+| UART                | **uartStart**(int baudrate)                         |
+|                     | **uartSend**(byte[] wrData)                           |
+|                     | **uartReveive**(int rdLen)                          |
+|                     | **uartStop**()
 | SYSTEM              | **registerWrite**(int regAddr, int val)             |
 |                     | **registerRead**(int regAddr)                       |
 |                     | **getDeviceInfo**()                                 |
@@ -328,6 +332,67 @@ JSON:
 ```
 {
   "method": "i2cStop",
+  "params": []
+}
+```
+
+## UART
+### uartStart(int baudrate)
+
+Initializes UART module with a specified baudrate
+
+Parameters:
+
+`int baudrate` - baudrate of the UART interface.
+
+JSON:
+```
+{
+  "method": "uartStart",
+  "params": [<baudrate>]
+}
+```
+
+### uartSend(byte[] wrData)
+
+Send data to the UART bus
+
+Parameters:
+
+`byte[] rwData` - byte array containing the data to send.
+
+JSON:
+```
+{
+  "method": "uartSend",
+  "params": [<wrData>]
+}
+```
+
+### uartReceive(int rdLen)
+
+Receive data from the UART bus.
+
+Parameters:
+
+`int rdLen` - Number of byte to read. 
+
+JSON:
+```
+{
+  "method": "uartReceive",
+  "params": [<rdLen>]
+}
+```
+
+### uartStop()
+
+Close the UART bus
+
+JSON:
+```
+{
+  "method": "uartStop",
   "params": []
 }
 ```
